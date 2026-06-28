@@ -7,10 +7,10 @@
 ## Short description（≤132 字元）
 
 ### 繁體中文
-> 裁判書頁面加上「判決架構」導覽、智慧複製（去分行、附字號），並提供瀏覽器側邊欄「判決剪貼簿」跨分頁保存並匯出複製過的段落。
+> 裁判書頁面加上「判決架構」導覽，並提供 Ctrl/Cmd+Q 智慧複製與判決剪貼簿，跨分頁保存、附字號並匯出收錄段落。
 
 ### English
-> Judgment outline sidebar, smart copy (strip line breaks + append citation), and a browser side panel clipboard to save and export copied passages across tabs.
+> Judgment outline sidebar plus Ctrl/Cmd+Q smart copy and a side-panel clipboard that appends citations and exports saved passages.
 
 ---
 
@@ -23,18 +23,18 @@
 
 側欄會自動跳過引號內被引用的條文（例如「按 X 法第 N 條規定：⋯一、⋯二、⋯」），不會把法條條款誤抓成本篇判決的大綱；卡片寬度也會依當下展開的最深層級自動調整，淺判決保持窄、深判決自動加寬避免標籤被截斷。
 
-✂️ **智慧複製**
-選取任何一段判決文字後複製，自動移除換行與中日韓字元間的多餘空白，並於尾端附上「（<裁判字號>意旨參照）」，方便直接貼進書狀或筆記。英數字之間的空格（如 "NT 300"）會被保留。字號附加功能可在設定頁或側邊欄頂端一鍵關閉。另提供 **Cmd+X / Ctrl+X** 快速鍵：同樣正規化後寫入剪貼簿，但不存入剪貼簿卡片，適用於僅需一次性貼到外部工具、不希望累積卡片清單的情境。
+✂️ **Ctrl/Cmd+Q 智慧複製**
+選取任何一段判決文字後按 **Ctrl+Q**（macOS 為 **Cmd+Q**），擴充功能會自動移除分行與中日韓字元間的多餘空白，保留 ASCII 英數之間的空格，將整理後文字寫入剪貼簿並新增到「判決剪貼簿」卡片；可依設定於尾端附上「（<裁判字號>意旨參照）」。一般 **Ctrl/Cmd+C** 與 **Ctrl/Cmd+X** 均維持瀏覽器原生行為，不附字號、不新增卡片。
 
 📋 **判決剪貼簿側邊欄**
-每次 Cmd+C / Ctrl+C 複製後，擴充功能會把「去分行 + 附字號」的完整文字推進 Chrome 瀏覽器原生側邊欄，以卡片形式保存**當次瀏覽期間**的所有判決段落。側邊欄由點擊工具列的擴充功能圖示開啟，**不限於裁判書頁面** —— 切到 Google Docs、Word Online、Obsidian Web、Notion 等任何分頁都看得到同一份卡片清單，點卡片上的「複製」鈕即可貼上，非常適合需要一次引用多段判決文字的書狀撰寫情境。
+每次 Ctrl/Cmd+Q 後，擴充功能會把「去分行 + 依設定附字號」的完整文字推進 Chrome 瀏覽器原生側邊欄，以卡片形式保存**當次瀏覽期間**收錄的所有判決段落。側邊欄由點擊工具列的擴充功能圖示開啟，**不限於裁判書頁面** —— 切到 Google Docs、Word Online、Obsidian Web、Notion 等任何分頁都看得到同一份卡片清單，點卡片上的「複製」鈕即可貼上，非常適合需要一次引用多段判決文字的書狀撰寫情境。
 
 每張卡片包含來源標籤（裁判書 / 判解函釋 / 內網判解函釋 / 內網裁判書）、可點擊的裁判字號（在新分頁開啟原始判決頁面）、複製時間戳與完整內文；色系依來源系統自動切換，採用司法院官方色票。每張卡片的「**前往**」按鈕可直接跳回該段落在原始判決頁面的位置：原分頁仍開啟即切換並滾動、以黃色持續高亮；已關閉或已導航至其他判決則自動開新分頁載入原文後跳轉。複製當下會於選取文字起迄位置插入隱形錨點，前往時以 DOM 直接定位，不依賴 URL 比對。每張卡片亦可加入自訂 **#標籤**（彩色膠囊樣式，顏色跟隨來源主題）及自由文字**備註**，儲存後直接顯示在卡片上。側邊欄頂端提供**關鍵字搜尋列**，可即時篩選卡片內文、字號、備註或 #標籤；搜尋列下方自動彙整所有標籤為可點選的標籤雲，一鍵篩選特定主題。完全重複的內容自動去重並提示「已複製過相同內容」。字體大小可四段調整（小／中／大／特大），標籤與字號隨內文一起縮放。支援將全部卡片匯出為 `.txt` 純文字或 `.md` Markdown 檔（一併帶出 #標籤與備註），`.md` 為 Obsidian 友善的引用區塊格式，判決字號會做為二級標題、內文為引用區塊，可直接拖進 Obsidian 資料庫檢視。
 
 **隱私設計**：剪貼簿紀錄只存在 `chrome.storage.session`（Chrome 原生記憶體暫存區），關閉瀏覽器即自動清空，**不寫入硬碟、不上傳雲端、不跨裝置同步**。即使同時開多個瀏覽器視窗，紀錄在同一個瀏覽器程序內共享、另開瀏覽器則各自獨立。
 
 ⚙️ **後台設定頁面**
-  　• 「複製時自動附上裁判字號」開關（預設：開），亦可於判決剪貼簿側邊欄頂端即時切換，兩端共用同一設定
+  　• 「Ctrl/Cmd+Q 時自動附上裁判字號」開關（預設：開），亦可於判決剪貼簿側邊欄頂端即時切換，兩端共用同一設定
   　• 法令判解系統、裁判書系統、內網判解函釋、內網裁判書系統的「判決架構」耳標可分別設定停靠在頁面左側或右側
   　• 「展開深度」可在 1 到 6 層之間調整（預設 3）：
   　　　1 — 主文／事實／理由 + 壹、貳、參
@@ -65,8 +65,8 @@ https://github.com/han0302-cyber/judicial-outline-extension
 
 🆕 **v0.2.4 更新**
   • 判決剪貼簿側邊欄頂端新增「**附上字號 開／關**」即時切換，與設定頁共用同一設定，任一端變更即時同步至所有分頁、設定頁與 content script，不需開後台
-  • 新增 **Cmd+X / Ctrl+X 快速複製但不存卡片**：同樣套用正規化與字號附加（若已開啟）寫入剪貼簿，但跳過「判決剪貼簿」卡片入檔，適用於僅需一次性貼到外部工具、不希望卡片清單累積的情境
-  • 可編輯欄位（搜尋框、登入框等）的原生剪下行為保留不受攔截
+  • 新增 **Ctrl/Cmd+Q 收錄判決段落**：套用去分行與空白正規化，依設定附上字號，並存入「判決剪貼簿」卡片
+  • Ctrl/Cmd+C 與 Ctrl/Cmd+X 維持瀏覽器原生複製、剪下行為，不附字號、不新增卡片
 
 🆕 **v0.2.3 更新**
   • 判決剪貼簿卡片新增「**前往**」按鈕：一鍵跳回該段落在原始判決頁面的位置
@@ -76,7 +76,7 @@ https://github.com/han0302-cyber/judicial-outline-extension
   • 內網卡片標籤拆分為「內網判解函釋」與「內網裁判書」兩類，與外網卡片的系統分類對齊
 
 🆕 **v0.2.2 更新**
-  • 新增支援司法院內部網路判解函釋 (`legal.law.intraj/FINT/*`)，院內使用 Chrome 亦可在判解函釋使用判決架構耳標與智慧複製功能
+  • 新增支援司法院內部網路判解函釋 (`legal.law.intraj/FINT/*`)，院內使用 Chrome 亦可在判解函釋使用判決架構耳標與 Ctrl/Cmd+Q 收錄功能
   • 設定頁「耳標位置」內網判解函釋與內網裁判書系統可分別設定左右側
 
 🆕 **v0.2.1 更新**
@@ -95,7 +95,7 @@ https://github.com/han0302-cyber/judicial-outline-extension
 
 🆕 **v0.2.0 更新**
   • 新增「判決剪貼簿」瀏覽器原生側邊欄（Chrome Side Panel API）
-  • Cmd+C / Ctrl+C 複製後自動把完整文字入檔為卡片，跨分頁可瀏覽、逐一再貼上，適合處理多段引文的書狀撰寫
+  • Ctrl/Cmd+Q 收錄後自動把完整文字入檔為卡片，跨分頁可瀏覽、逐一再貼上，適合處理多段引文的書狀撰寫
   • 卡片含來源標籤（裁判書 / 判解函釋 / 內網）、可點擊字號連回原始判決、複製時間、完整內文
   • 支援將整份紀錄匯出為 `.txt` 純文字或 `.md` Markdown（Obsidian blockquote 格式，字號為 H2 小標題）
   • 字體四段縮放（小／中／大／特大）、完全重複自動去重並提示
@@ -112,12 +112,12 @@ https://github.com/han0302-cyber/judicial-outline-extension
   • 卡片寬度依展開深度自動加寬，避免標籤被截斷
 
 🆕 **v0.1.6 更新**
-  • 新增支援司法院內部網路裁判書系統 (`judgment.law.intraj/FJUD/*`)，院內使用 Chrome 亦可使用判決架構耳標與智慧複製功能
+  • 新增支援司法院內部網路裁判書系統 (`judgment.law.intraj/FJUD/*`)，院內使用 Chrome 亦可使用判決架構耳標與 Ctrl/Cmd+Q 收錄功能
 
 🆕 **v0.1.5 更新**
   • 新增「擴充功能選項」設定頁
   • 新增「耳標位置左/右」可分網站設定
-  • 新增「複製時自動附上裁判字號」開關
+  • 新增「Ctrl/Cmd+Q 時自動附上裁判字號」開關
   • 偵測「事實及理由」合併段落為獨立目錄條目
 
 ---
@@ -127,18 +127,18 @@ https://github.com/han0302-cyber/judicial-outline-extension
 📑 **Judgment outline sidebar**
 Automatically detects the full 6-level Taiwanese legal numbering hierarchy — from top-level 壹/貳 → 一/二 → (一)/㈠ → 1./⒈/１． → (1)/⑴/（１） → ①/②/③ — plus the section headings 主文/事實/理由/事實及理由. Builds a clickable table of contents on the left (or right, configurable) edge of the page. Clicking an item smoothly scrolls to the corresponding paragraph, with the sticky header offset baked in. Quoted statute citations (e.g. "按 X 法第 N 條規定：⋯一、⋯二、⋯") are skipped so the outline reflects only the ruling's own structure. Card width auto-adjusts to the deepest expanded level, keeping shallow rulings narrow and wide rulings readable.
 
-✂️ **Smart copy**
-Select any judgment text and copy it — line breaks and padding whitespace between CJK characters are stripped automatically, and the citation suffix `（<case-number>意旨參照）` is appended. Spaces between ASCII alphanumerics (like "NT 300") are preserved. The citation suffix can be toggled off from either the options page or the side panel header. A secondary shortcut **Cmd+X / Ctrl+X** also writes the normalized (and optionally citation-suffixed) text to the clipboard but skips the clipboard-card store, for one-off pastes that shouldn't accumulate in the card list.
+✂️ **Ctrl/Cmd+Q smart copy**
+Select any judgment text and press **Ctrl+Q**（or **Cmd+Q** on macOS）to strip line breaks and excess CJK spacing while preserving spaces between ASCII alphanumerics, then write the cleaned text to the clipboard and save it as a card in the side panel. The citation suffix `（<case-number>意旨參照）` can be appended when enabled. Regular **Ctrl/Cmd+C** and **Ctrl/Cmd+X** keep the browser's native behavior, with no citation suffix and no card added.
 
 📋 **Clipboard side panel**
-Every Cmd+C / Ctrl+C is also saved as a card in Chrome's native side panel, accumulating **every copy made during the current browser session**. Open the panel from the toolbar icon — it's **not limited to ruling pages**, so you can switch to Google Docs, Word Online, Obsidian Web, Notion, etc. and still see the same card list, clicking each card's "Copy" button to paste one by one. Ideal for brief-writing workflows that cite multiple passages.
+Every Ctrl/Cmd+Q clip is saved as a card in Chrome's native side panel, accumulating **every passage saved during the current browser session**. Open the panel from the toolbar icon — it's **not limited to ruling pages**, so you can switch to Google Docs, Word Online, Obsidian Web, Notion, etc. and still see the same card list, clicking each card's "Copy" button to paste one by one. Ideal for brief-writing workflows that cite multiple passages.
 
 Each card shows the source tag (裁判書 / 判解函釋 / 內網判解函釋 / 內網裁判書), the clickable case number (opens the original ruling in a new tab), a timestamp, and the full text. Theme colors switch automatically by source. A **"Go to source"** button on each card jumps back to the exact paragraph on the original ruling page: if the original tab is still open, it switches and scrolls with a persistent yellow highlight; if closed or navigated elsewhere, a new tab is opened and auto-scrolls after load. Invisible anchors inserted at copy time allow direct DOM lookup, so positioning does not depend on URL matching. Each card also supports custom **#hashtags** (Obsidian-style colored pills that follow the source theme) and free-text **memos**, both saved and displayed directly on the card. A **keyword search bar** at the top filters cards by text, case number, memo, or #hashtag in real time; below it, an auto-generated **tag cloud** lets you filter by topic with one click. Exact duplicates are de-duplicated with a toast notification. Four-step font scaling (small / medium / large / extra-large) scales the tag, label, and body together. Export all cards as `.txt` or `.md` (including #hashtags and memos) — the `.md` format uses H2 headings for case numbers and blockquotes for judgment text, making it a clean drop-in for Obsidian vaults.
 
 **Privacy by design**: Clipboard history is stored only in `chrome.storage.session` (Chrome's native in-memory storage). It is wiped the moment you close the browser — **never written to disk, never uploaded, never synced across devices**.
 
 ⚙️ **Options page**
-  • Toggle "append citation on copy" (default: on) — also exposed at the top of the clipboard side panel as an inline switch; both endpoints share the same setting and propagate changes instantly
+  • Toggle "append citation on Ctrl/Cmd+Q" (default: on) — also exposed at the top of the clipboard side panel as an inline switch; both endpoints share the same setting and propagate changes instantly
 
   • Per-site sidebar position (left / right) for FINT, FJUD, intranet FINT, and intranet FJUD
   • "Expand depth" slider 1–6 (default 3): controls how deep the outline auto-expands
@@ -164,8 +164,8 @@ Lawyers, legal staff, law students, and researchers — anyone who needs to read
 
 🆕 **v0.2.4 changes**
   • New **inline "append citation" toggle** at the top of the clipboard side panel: shares the same setting as the options page, and changes propagate instantly across all tabs, the options page, and the content script — no need to open the backend
-  • New **Cmd+X / Ctrl+X shortcut — copy without adding to cards**: applies the same normalization and citation suffix (when enabled) to the clipboard, but skips the clipboard-card store, for one-off pastes to external tools that shouldn't accumulate in the card list
-  • Native cut behavior is preserved inside editable fields (search boxes, login forms, etc.) — only non-editable selections on ruling pages are intercepted
+  • New **Ctrl/Cmd+Q smart-copy shortcut**: normalizes the selected text, appends the citation suffix when enabled, and adds the passage to the clipboard-card store
+  • Native copy and cut behavior is preserved for Ctrl/Cmd+C and Ctrl/Cmd+X
 
 🆕 **v0.2.3 changes**
   • New **"Go to source"** button on each clipboard card: jumps back to the exact paragraph on the original ruling page
@@ -194,7 +194,7 @@ Lawyers, legal staff, law students, and researchers — anyone who needs to read
 
 🆕 **v0.2.0 changes**
   • New clipboard side panel backed by Chrome's Side Panel API
-  • Every copy auto-saves as a card; cards persist across tabs and can be re-pasted one by one — ideal for multi-citation brief writing
+  • Every Ctrl/Cmd+Q clip auto-saves as a card; cards persist across tabs and can be re-pasted one by one — ideal for multi-citation brief writing
   • Cards show source tag, clickable case number (opens original ruling), timestamp, and full text
   • Export all cards to `.txt` plain text or `.md` Markdown (Obsidian-friendly blockquote format with H2 case-number headings)
   • Four-step font scaling, exact-match de-duplication with toast notification
@@ -223,10 +223,10 @@ Lawyers, legal staff, law students, and researchers — anyone who needs to read
 ### Host permissions: `legal.judicial.gov.tw/FINT/*`, `judgment.judicial.gov.tw/FJUD/*`, `legal.law.intraj/FINT/*`, `judgment.law.intraj/FJUD/*`
 
 **Justification（繁中）**：
-擴充功能必須在司法院公開網域（FINT 法令判解系統、FJUD 裁判書系統）與司法院內部網路的裁判書及法令判解頁面上注入 DOM 元件（判決架構導覽側欄）以及攔截複製事件（移除換行、附上裁判字號、紀錄到判決剪貼簿側邊欄）。功能完全限定於這四個網域，不會存取其他網站。內網判解函釋網域（`legal.law.intraj`）限定於 `/FINT/*` 路徑；內網裁判書網域（`judgment.law.intraj`）限定於 `/FJUD/*` 路徑。行為與公開網域一致，供院內使用者安裝同一份擴充功能使用。
+擴充功能必須在司法院公開網域（FINT 法令判解系統、FJUD 裁判書系統）與司法院內部網路的裁判書及法令判解頁面上注入 DOM 元件（判決架構導覽側欄），並於使用者按 Ctrl/Cmd+Q 時攔截該次複製事件（去分行、依設定附上裁判字號、紀錄到判決剪貼簿側邊欄）。一般 Ctrl/Cmd+C 與 Ctrl/Cmd+X 維持瀏覽器原生行為。功能完全限定於這四個網域，不會存取其他網站。內網判解函釋網域（`legal.law.intraj`）限定於 `/FINT/*` 路徑；內網裁判書網域（`judgment.law.intraj`）限定於 `/FJUD/*` 路徑。行為與公開網域一致，供院內使用者安裝同一份擴充功能使用。
 
 **Justification (English)**:
-The extension needs to inject DOM elements (the outline sidebar) and intercept the copy event (line-break stripping, citation suffix, and logging to the clipboard side panel) on ruling pages hosted at the Taiwan Judicial Yuan's public domains (FINT legal interpretations, FJUD rulings) and the Judicial Yuan's internal intranet. All functionality is strictly limited to these four hosts; no other websites are accessed. The intranet legal interpretations host (`legal.law.intraj`) is scoped to `/FINT/*`; the intranet judgment host (`judgment.law.intraj`) is scoped to `/FJUD/*`. Both behave identically to the public hosts and let Judicial Yuan staff install the same extension for internal use.
+The extension needs to inject DOM elements (the outline sidebar) and, only when the user presses Ctrl/Cmd+Q, intercept that copy event to strip line breaks, optionally append a citation suffix, and log it to the clipboard side panel on ruling pages hosted at the Taiwan Judicial Yuan's public domains (FINT legal interpretations, FJUD rulings) and the Judicial Yuan's internal intranet. Regular Ctrl/Cmd+C and Ctrl/Cmd+X keep the browser's native behavior. All functionality is strictly limited to these four hosts; no other websites are accessed. The intranet legal interpretations host (`legal.law.intraj`) is scoped to `/FINT/*`; the intranet judgment host (`judgment.law.intraj`) is scoped to `/FJUD/*`. Both behave identically to the public hosts and let Judicial Yuan staff install the same extension for internal use.
 
 ### `storage` permission
 
