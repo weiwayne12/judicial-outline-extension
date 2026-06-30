@@ -113,12 +113,20 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 10px;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--fint-primary);
   margin-bottom: 12px;
+}
+
+#fint-outline-sidebar .fint-outline-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
 }
 
 #fint-outline-sidebar .fint-select-all-btn {
@@ -140,6 +148,11 @@
 #fint-outline-sidebar .fint-select-all-btn:hover {
   background: var(--fint-primary);
   color: #ffffff;
+}
+
+#fint-outline-sidebar .fint-select-all-native-btn {
+  background: #ffffff;
+  border: 1px solid var(--fint-border);
 }
 
 #fint-outline-sidebar .fint-outline-list {

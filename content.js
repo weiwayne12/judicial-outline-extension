@@ -517,13 +517,7 @@
     headLabel.textContent = '判決架構'
     head.appendChild(headLabel)
 
-    const selectAllBtn = hostDoc.createElement('button')
-    selectAllBtn.type = 'button'
-    selectAllBtn.className = 'fint-select-all-btn'
-    selectAllBtn.textContent = '全選正文'
-    selectAllBtn.title = '選取判決全文（選取後可按 Ctrl+Q 智慧複製）'
-    selectAllBtn.addEventListener('click', (e) => {
-      e.stopPropagation()
+    const selectBodyContent = (toastMessage) => {
       const body = findBodyContainer()
       if (!body) {
         showToast('找不到判決正文區塊')
@@ -539,11 +533,37 @@
       // Ctrl+Q keydown 會被 top 文件實例接到（其 window.getSelection() 為空，
       // 直接 return），導致「全選後反而無法 Ctrl+Q」。此處把焦點還給正文所在
       // 的 frame（本 handler 跑在 iframe 實例，window 即該 iframe 視窗），
-      // 並避免捲動跳動。
+      // 並避免捲動跳動。原格式全選也共用此行為，讓後續 Ctrl/Cmd+C 保持原生。
       try { window.focus() } catch (_) {}
-      showToast('已全選正文（Ctrl+Q 智慧複製）')
+      showToast(toastMessage)
+    }
+
+    const headActions = hostDoc.createElement('div')
+    headActions.className = 'fint-outline-actions'
+
+    const selectAllBtn = hostDoc.createElement('button')
+    selectAllBtn.type = 'button'
+    selectAllBtn.className = 'fint-select-all-btn'
+    selectAllBtn.textContent = '全選正文'
+    selectAllBtn.title = '選取判決全文（選取後可按 Ctrl+Q 智慧複製）'
+    selectAllBtn.addEventListener('click', (e) => {
+      e.stopPropagation()
+      selectBodyContent('已全選正文（Ctrl+Q 智慧複製）')
     })
-    head.appendChild(selectAllBtn)
+    headActions.appendChild(selectAllBtn)
+
+    const nativeSelectAllBtn = hostDoc.createElement('button')
+    nativeSelectAllBtn.type = 'button'
+    nativeSelectAllBtn.className = 'fint-select-all-btn fint-select-all-native-btn'
+    nativeSelectAllBtn.textContent = '原格式全選'
+    nativeSelectAllBtn.title = '選取判決正文（選取後按 Ctrl/Cmd+C，保留瀏覽器原生格式）'
+    nativeSelectAllBtn.addEventListener('click', (e) => {
+      e.stopPropagation()
+      selectBodyContent('已原格式全選（請按 Ctrl/Cmd+C 複製）')
+    })
+    headActions.appendChild(nativeSelectAllBtn)
+
+    head.appendChild(headActions)
 
     card.appendChild(head)
 
